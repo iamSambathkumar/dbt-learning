@@ -37,11 +37,10 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   sk_dbt:
-    # Applies to all files under models/example/
-    example:
-      +materialized: table
-      jaffle_shop:
+    +schema: dbt_sk           # Ensures all models under 'sk_dbt' go to dbt_sk schema
+    +materialized: view       # Default to view unless overridden
     staging:
-      +materialized: view
+      +materialized: view     # All staging models are views
     marts:
-      +materialized: table
+      +materialized: table    # All marts models are tables
+
